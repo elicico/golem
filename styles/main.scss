@@ -17,21 +17,21 @@ button {
     margin-right: 10px;
     text-decoration: none;
     font-weight: bold;
-    color: SteelBlue;
+    color: steelblue;
   }
 }
 
 .nav--foobutton {
-  color: SteelBlue;
+  color: steelblue;
   padding: 8px;
-  border: 2px solid SteelBlue;
+  border: 2px solid steelblue;
   border-radius: 5px;
   font-weight: bold;
   margin-top: 5px;
   transition: all 0.3s linear;
   cursor: pointer;
   &:hover {
-    background-color: SteelBlue;
+    background-color: steelblue;
     color: white;
   }
 }
@@ -66,5 +66,5 @@ button {
 }
 
 .bar {
-  color: MediumBlue;
+  color: mediumblue;
 }
