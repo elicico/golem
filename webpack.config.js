@@ -49,6 +49,10 @@ var config = {
     filename: 'bundle.js'
   },
 
+  devServer: {
+    historyApiFallback: true
+  },
+
   postcss: function() {
     return [autoprefixer, precss];
   }
