@@ -4,44 +4,13 @@ var autoprefixer = require('autoprefixer');
 var precss = require('precss');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var extractSass = new ExtractTextPlugin("main.css");
+
 var BUILD_DIR = path.resolve(__dirname, 'static');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
   entry: APP_DIR + '/index.jsx',
-
-  module : {
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
-    ],
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: "babel",
-        include: APP_DIR,
-        query: {
-          presets: [ "es2015", "react", "react-hmre", "stage-0" ]
-        }
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style", "raw!postcss") //ExtractTextPlugin.extract("style", ['raw', 'sass', 'postcss'])
-      }
-    ]
-  },
-
-  eslint: {
-    configFile: './.eslintrc'
-  },
-
-  plugins: [
-    new ExtractTextPlugin("main.css")
-  ],
 
   output: {
     path: BUILD_DIR,
@@ -49,12 +18,57 @@ var config = {
     filename: 'bundle.js'
   },
 
-  devServer: {
-    historyApiFallback: true
+  module : {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'eslint-loader'
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        include: APP_DIR,
+        options: {
+          presets: [ "es2015", "react", "stage-0" ]
+        }
+      },
+      {
+        test: /\.scss$/,
+        loader: extractSass.extract({
+          use: [
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            }
+          ],
+          // use style-loader in development
+          fallback: "style-loader"
+        }),
+      },
+    ],
   },
 
-  postcss: function() {
-    return [autoprefixer, precss];
+  plugins: [
+    extractSass,
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        eslint: {
+          configFile: './.eslintrc'
+        },
+        postcss: function() {
+          return [autoprefixer, precss];
+        }
+      }
+    })
+  ],
+
+  devServer: {
+    historyApiFallback: true
   }
 };
 

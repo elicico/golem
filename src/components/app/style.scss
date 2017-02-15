@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 3px solid steelblue;
+  .nav__item {
+    text-decoration: none;
+    flex: 1 1 auto;
+    color: steelblue;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: all 0.3s linear;
+    &:hover, &.active {
+      color: MediumVioletRed;
+    }
+  }
+}

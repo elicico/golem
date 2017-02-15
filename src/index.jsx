@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Root from '../src/Root.jsx';
+import Root from './store/Root.jsx';
 
-require('../styles/main.scss');
+require('../common_styles/main.scss');
 
 const documentEl = document.getElementById('root');
 

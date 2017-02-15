@@ -1,0 +1,18 @@
+@mixin minwidth($w) {
+  @media screen and ( min-width : $w ){
+    @content;
+  }
+}
+
+@mixin fontStyle($name, $folder, $file, $fontWeight, $fontStyle) {
+  @font-face {
+    font-family: $name;
+    src: url('http://localhost:8000/static/fonts/#{$folder}/#{$file}.eot');
+    src: url('http://localhost:8000/static/fonts/#{$folder}/#{$file}.eot#iefix') format("embedded-opentype"),
+      url('http://localhost:8000/static/fonts/#{$folder}/#{$file}.woff') format("woff"),
+      url('http://localhost:8000/static/fonts/#{$folder}/#{$file}.ttf') format("truetype"),
+      url('http://localhost:8000/static/fonts/#{$folder}/#{$file}.svg') format("svg");
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+  }
+}
