@@ -1,0 +1,30 @@
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+
+@import "./common_styles/utils/variables";
+@import "./common_styles/utils/mixins";
+@import "./common_styles/utils/fonts";
+@import "./common_styles/utils/colors";
+@import "./common_styles/utils/overlay";
+@import "./common_styles/utils/typography";
+@import "./common_styles/utils/spinner";
+@import "./common_styles/utils/titles";
+@import "./common_styles/utils/wrappers";
+@import "./common_styles/utils/button";
+@import "./components/app/style";
+@import "./components/counter/style";
+@import "./components/foo/style";

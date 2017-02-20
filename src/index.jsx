@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import Root from './store/Root.jsx';
 
-require('../common_styles/main.scss');
+require('./main.scss');
 
 const documentEl = document.getElementById('root');
 
